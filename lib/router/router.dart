@@ -98,7 +98,7 @@ class PageInfo {
   final String title;
   final PageBuilder builder;
 
-  PageInfo({
+  const PageInfo({
     required this.title,
     required this.builder,
   });

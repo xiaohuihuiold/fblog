@@ -26,21 +26,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   BlogRouterDelegate _routerDelegate = BlogRouterDelegate();
 
+  Map<String, PageInfo> _pages = {
+    HomePage.routerName: HomePage.pageInfo,
+  };
+
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = ThemeProvider.watch(context);
     WebProvider webProvider = WebProvider.watch(context);
-    _routerDelegate.pages = {
-      HomePage.routerName: PageInfo(
-        title: '首页',
-        builder: (context, id, parameter, arguments) => HomePage(),
-      ),
-      TestPage.routerName: PageInfo(
-        title: '测试',
-        builder: (context, id, parameter, arguments) =>
-            TestPage(id: id, parameter: parameter, arguments: arguments),
-      ),
-    };
+    _routerDelegate.pages = _pages;
     return MaterialApp.router(
       title: webProvider.title,
       darkTheme: themeProvider.darkTheme,

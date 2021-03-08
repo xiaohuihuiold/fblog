@@ -1,11 +1,16 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import '../../router/router.dart';
 
 import '../../provider/screen_provider.dart';
+import '../../http/http_client.dart';
+import '../../entity/manifest_entity.dart';
 
 class HomePage extends StatefulWidget {
   static const routerName = '/';
+  static final pageInfo = PageInfo(
+    title: '首页',
+    builder: (context, id, parameter, arguments) => HomePage(),
+  );
 
   const HomePage({
     Key? key,
@@ -19,82 +24,16 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    HttpClient.get<ManifestEntity>('/data/manifest.json').then((value) {
+      print(value.entity);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('home'),
-      ),
       body: Center(
-        child: ElevatedButton(
-          child: Text('jump'),
-          onPressed: () {
-            Navigator.of(context).pushNamed('/test', arguments: '测试');
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class TestPage extends StatefulWidget {
-  static const routerName = '/test';
-
-  final int? id;
-  final Map<String, String>? parameter;
-  final Object? arguments;
-
-  const TestPage({
-    Key? key,
-    this.id,
-    this.parameter,
-    this.arguments,
-  }) : super(key: key);
-
-  @override
-  _TestPageState createState() => _TestPageState();
-}
-
-class _TestPageState extends State<TestPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('test'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'id:${widget.id}',
-              style: TextStyle(
-                fontSize: 52.0,
-              ),
-            ),
-            Text(
-              'arguments:${widget.arguments}',
-              style: TextStyle(
-                fontSize: 52.0,
-              ),
-            ),
-            if (widget.parameter != null)
-              for (MapEntry<String, String> kv in widget.parameter!.entries)
-                Text(
-                  'key:${kv.key},value:${kv.value}',
-                  style: TextStyle(
-                    fontSize: 52.0,
-                  ),
-                ),
-          ],
-        ),
+        child: Text('Hello World!'),
       ),
     );
   }
