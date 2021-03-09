@@ -12,6 +12,17 @@ class ManifestEntity {
   Map<String, List<PostEntity>> _postCategoryMap = {};
   Map<String, List<PostEntity>> _postTagMap = {};
 
+  late String _basePath;
+
+  String get basePath => _basePath;
+
+  set basePath(String value) {
+    _basePath = value;
+    posts.forEach((post) {
+      post.basePath = _basePath;
+    });
+  }
+
   ManifestEntity({
     required this.version,
     required this.createTime,

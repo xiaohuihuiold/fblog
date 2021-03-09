@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'provider/screen_provider.dart';
+
 import 'provider/theme_provider.dart';
 import 'provider/web_provider.dart';
+import 'provider/manifest_provider.dart';
 import 'router/router.dart';
 import 'page/home/home_page.dart';
+import 'page/post/post_page.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -13,6 +15,7 @@ void main() {
       ChangeNotifierProvider.value(value: ThemeProvider()),
       ChangeNotifierProvider.value(value: WebProvider()),
       Provider.value(value: ScreenProvider()),
+      ChangeNotifierProvider.value(value: ManifestProvider()),
     ],
     child: MyApp(),
   ));
@@ -28,6 +31,7 @@ class _MyAppState extends State<MyApp> {
 
   Map<String, PageInfo> _pages = {
     HomePage.routerName: HomePage.pageInfo,
+    PostPage.routerName: PostPage.pageInfo,
   };
 
   @override

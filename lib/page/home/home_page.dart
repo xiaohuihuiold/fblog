@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../router/router.dart';
+import 'package:provider/provider.dart';
 
+import '../../router/router.dart';
 import '../../provider/screen_provider.dart';
-import '../../http/http_client.dart';
-import '../../entity/manifest_entity.dart';
+import '../../provider/manifest_provider.dart';
+import '../../entity/post_entity.dart';
+import '../../widget/three_view.dart';
+import '../post/post_page.dart';
 
 class HomePage extends StatefulWidget {
   static const routerName = '/';
@@ -24,17 +27,13 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    HttpClient.get<ManifestEntity>('/data/manifest.json').then((value) {
-      print(value.entity);
-    });
+    ManifestProvider.read(context).load();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Hello World!'),
-      ),
+      body: ThreeView(),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import 'manifest_entity.dart';
 import 'post_entity.dart';
 
@@ -13,7 +15,9 @@ class EntityFactory {
     Object? object;
     try {
       object = _entities[T]?.call(json);
-    } catch (e) {}
+    } catch (e) {
+      debugPrint(e.toString());
+    }
     if (object is T) {
       return object;
     } else {

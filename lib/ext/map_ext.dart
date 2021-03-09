@@ -4,7 +4,7 @@ extension MapExt on Map {
   }
 
   int? getIntOrNull(String key) {
-    dynamic value = [key];
+    dynamic value = this[key];
     if (value == null) {
       return null;
     }
@@ -16,7 +16,7 @@ extension MapExt on Map {
   }
 
   double? getDoubleOrNull(String key) {
-    dynamic value = [key];
+    dynamic value = this[key];
     if (value == null) {
       return null;
     }
@@ -28,7 +28,7 @@ extension MapExt on Map {
   }
 
   String? getStringOrNull(String key) {
-    dynamic value = [key];
+    dynamic value = this[key];
     if (value == null) {
       return null;
     }
@@ -40,7 +40,7 @@ extension MapExt on Map {
   }
 
   Map? getObjectOrNull(String key) {
-    dynamic value = [key];
+    dynamic value = this[key];
     if (value == null) {
       return null;
     }
@@ -52,7 +52,7 @@ extension MapExt on Map {
   }
 
   List? getArrayOrNull(String key) {
-    dynamic value = [key];
+    dynamic value = this[key];
     if (value == null) {
       return null;
     }
